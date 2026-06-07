@@ -4,6 +4,7 @@ from dataclasses import dataclass
 
 
 def sigmoid(x: float) -> float:
+    """Numerically stable sigmoid."""
     if x >= 0:
         e = math.exp(-x)
         return 1 / (1 + e)

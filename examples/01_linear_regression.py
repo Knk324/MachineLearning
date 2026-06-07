@@ -14,8 +14,9 @@ class LinearRegressionGD:
 
         n = len(x)
         for _ in range(self.epochs):
-            dw = sum(((self.weight * xi + self.bias) - yi) * xi for xi, yi in zip(x, y)) * (2 / n)
-            db = sum((self.weight * xi + self.bias) - yi for xi, yi in zip(x, y)) * (2 / n)
+            errors = [(self.weight * xi + self.bias) - yi for xi, yi in zip(x, y)]
+            dw = sum(err * xi for err, xi in zip(errors, x)) * (2 / n)
+            db = sum(errors) * (2 / n)
             self.weight -= self.learning_rate * dw
             self.bias -= self.learning_rate * db
 
